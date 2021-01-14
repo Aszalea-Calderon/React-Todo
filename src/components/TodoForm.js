@@ -1,5 +1,4 @@
 import React from "react";
-import TodoList from "./TodoList";
 
 class TodoForm extends React.Component {
   //Constructor with state
@@ -31,7 +30,7 @@ class TodoForm extends React.Component {
             name="todo"
             type="text"
             placeholder="Add task"
-          ></input>
+          />
           <button>Add to do</button>
         </form>
       </>
