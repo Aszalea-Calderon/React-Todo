@@ -1,51 +1,46 @@
-// import React from "react";
+import React from "react";
+import TodoList from "./components/TodoList";
+import TodoForm from "./components/TodoForm";
 
-// class App extends React.Component {
-//   // you will need a place to store your state in this component.
-//   // design `App` to be the parent component of your application.
-//   // this component is going to take care of state, and any change handlers you need to work with your state
+//Setting an intial source of data as we don't have anything
+const todo = [
+  {
+    name: "Take out trash",
+    id: 1,
+    completed: false,
+  },
+];
 
-// state ={
+class App extends React.Component {
+  //Constructor with state
+  constructor() {
+    super();
+    this.state = {
+      todo: todo,
+    };
+  }
 
-// }
-
-// const clear=()=>{
-
-// }
-//   render() {
-//     return (
-//       <div>
-//         <h2>Welcome to your Todo App!</h2>
-//         <input type="text" placeholder="Add task"></input>
-//         <button>Add To Do</button>
-//         <button onClick={clear}>Clear Completed</button>
-//       </div>
-//     );
-//   }
-// }
-
-// export default App;
-
-import React, { useState } from "react";
-import "./app.css";
-
-function App() {
-  const [theirName, setTheirName] = useState({ name: "" });
-  const change = (e) => {
-    console.log(e.target.value);
-    //   const { value, name } = e.target.value;
-    //   const valueToUse = value;
-    //   setTheirName({ ...theirName, [name]: valueToUse });
-    // };
+  //Adding items
+  addItem = (itemName) => {
+    this.setState({
+      todo: [
+        ...this.state.todo,
+        { name: itemName, id: Date.now(), completed: false },
+      ],
+    });
   };
-  const name = "Aszalea";
-  return (
-    <div>
-      <h1> Hey there! My name is {name}!</h1>
-      <p>What is your name? </p>
-      <input type="text" value={theirName.name} onChange={change}></input>
-      <p>Your name is {theirName.name} </p>
-    </div>
-  );
+
+  //Class methods to update the state
+  render() {
+    return (
+      <div>
+        <h2>Welcome to your Todo App!</h2>
+
+        <TodoForm addItem={this.addItem} />
+        <TodoList todo={this.state.todo} />
+      </div>
+    );
+  }
 }
+
 export default App;
